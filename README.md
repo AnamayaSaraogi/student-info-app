@@ -1,85 +1,98 @@
 # Student Information System
 
+## Project Title
+Lab Exercise: Collaborative Git Workflow Using a Simple Web Application
+
+---
+
 ## Team Members
 
-* Anamaya Saraogi — Developer
-* Arnav Narula — UI Developer
-* Parthiv Sushil — JavaScript Developer
+* **Anamaya Saraogi** — Team Lead / Developer
+* **Arnav Narula** — UI Developer
+* **Parthiv Sushil** — JavaScript Developer
+
+---
 
 ## Project Description
+The Student Information System is a simple web application developed as part of a collaborative Git workflow lab exercise. It displays basic student profile details (Name, Register Number, Programme) with interactive details and a styled layout.
 
-The Student Information System is a simple web application developed as part of a collaborative Git workflow exercise. It displays basic information about students, including their names, register numbers, and programme.
+The primary objective of this project is NOT to build a complex web application, but to learn essential collaborative Git workflows: configuring Git locally, creating isolated feature branches, making atomic commits, reviewing Pull Requests, working simultaneously with teammates without overwriting code, and intentionally creating and resolving a merge conflict.
 
-The primary objective of this project is to demonstrate collaborative software development using Git and GitHub, including branching, commits, pull requests, merging, and merge conflict resolution.
+---
 
 ## Technologies Used
+* **HTML5** – Web page structure
+* **CSS3** – Application styling and card layout
+* **JavaScript (ES6)** – Front-end button click functionality
+* **Git & GitHub** – Version control, feature branching, PR reviews, and conflict management
+* **Visual Studio Code** – Code editor
 
-* HTML
-* CSS
-* JavaScript
-* Git
-* GitHub
-* Visual Studio Code
+---
 
 ## Git Branching Strategy
+To ensure team members work collaboratively without directly modifying or overwriting the `main` branch, all feature development takes place on dedicated isolated branches before merging via Pull Requests.
 
-The project uses `main` as the primary branch. The `main` branch contains the stable, integrated version of the application. Team members do not make regular changes directly on `main`; instead, each member works on a separate feature branch and submits the completed work through a Pull Request.
+### Branches Created
+* `main` – Base production code created by Anamaya Saraogi.
+* `feature/ui` – Created by Arnav Narula to add card layout, spacing, and button styles.
+* `feature/javascript` – Created by Parthiv Sushil to add the "Show Details" button functionality.
+* `feature/contact` – Created by Anamaya Saraogi to add email and phone contact details.
+* `feature/student-name` – Created by Arnav Narula to update heading to `<h1>Student Management System</h1>`.
+* `feature/app-title` – Created by Parthiv Sushil to update heading to `<h1>MCA Student Information Portal</h1>`.
 
-The branches and responsibilities are:
-
-* `feature/ui` — Used by Arnav Narula for improving the page layout, styling, colours, spacing, and overall user interface.
-* `feature/javascript` — Used by Parthiv Sushil for adding JavaScript functionality and interactive behaviour.
-* `feature/contact` — Used by Anamaya Saraogi for adding or updating the contact information section.
-* `main` — Used to combine reviewed and approved changes from the feature branches.
-
-The usual workflow is:
-
-1. Create or switch to the appropriate feature branch.
-2. Make changes related only to that feature.
-3. Commit the changes with a meaningful commit message.
-4. Push the branch to GitHub.
-5. Open a Pull Request targeting `main`.
-6. Review and merge the Pull Request after confirming that the changes work correctly.
-
-This strategy keeps each person’s work separate, makes the contribution history easier to understand, and reduces the risk of accidentally breaking the stable version of the application.
+---
 
 ## Pull Requests Created
 
-Pull Requests are used to review and merge feature branches into the `main` branch. Each Pull Request represents a specific contribution by a team member.
+| Pull Request | Source Branch | Target Branch | Author | Reviewer | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **PR #1** | `feature/ui` | `main` | Arnav Narula | Anamaya Saraogi | Merged |
+| **PR #2** | `feature/javascript` | `main` | Parthiv Sushil | Anamaya Saraogi | Merged |
+| **PR #3** | `feature/contact` | `main` | Anamaya Saraogi | Anamaya Saraogi | Merged |
+| **PR #4** | `feature/student-name` | `main` | Arnav Narula | Anamaya Saraogi | Merged |
+| **PR #5** | `feature/app-title` | `main` | Parthiv Sushil | Anamaya Saraogi | Merged (Conflict Resolved) |
 
-The project includes the following Pull Requests:
-
-* `feature/ui` to `main` — Raised by Arnav Narula for UI improvements, including changes to the page structure, styling, layout, and visual presentation.
-* `feature/javascript` to `main` — Raised by Parthiv Sushil for JavaScript functionality and interactive behaviour.
-* `feature/contact` to `main` — Raised by Anamaya Saraogi for adding or updating the contact information section.
-
-The Pull Requests allow the team to review the changes before merging them. They also provide a record of who created each contribution, what the contribution was for, and how it was integrated into the project.
+---
 
 ## Merge Conflict
 
-A merge conflict was intentionally created to demonstrate how Git handles changes made to the same part of a file by different branches.
+### What caused the conflict?
+A merge conflict was intentionally created between `feature/student-name` (Arnav Narula) and `feature/app-title` (Parthiv Sushil). Both branches were created from the same earlier commit on `main` and edited the **exact same line** in `index.html`:
 
-The conflict involved the same line in `index.html`, such as the application title or heading. One branch changed the line to one version, while another branch changed the same line to a different version. Because Git could not automatically determine which version should be kept, it marked the file as conflicted.
+* **Arnav edited the heading to:** `<h1>Student Management System</h1>`
+* **Parthiv edited the heading to:** `<h1>MCA Student Information Portal</h1>`
 
-The conflict was raised when Anamaya Saraogi attempted to merge the `feature/contact` branch into `main` after Arnav Narula’s `feature/ui` branch had already modified the same section of `index.html`. The purpose of the conflict was to demonstrate that two team members had made overlapping changes to the same file and that the changes required manual review before they could be combined safely.
+When Arnav's PR (`feature/student-name`) was merged into `main` first by Anamaya, `main` received the updated heading. When Parthiv attempted to merge `feature/app-title`, GitHub flagged a content conflict because Git could not automatically determine which title to keep.
 
-The conflict was resolved by reviewing both versions of the file, discussing which content was required, combining the valid changes where appropriate, removing the Git conflict markers, and testing the resulting application. The resolution was then committed and pushed so that the Pull Request could be completed.
+### How was it resolved?
+1. Parthiv updated his local repository by pulling the latest changes from `main` into `feature/app-title` (`git merge main`).
+2. Git generated conflict markers in `index.html`:
+   ```html
+   <<<<<<< HEAD
+   <h1>MCA Student Information Portal</h1>
+   =======
+   <h1>Student Management System</h1>
+   >>>>>>> main
+   ```
+3. Parthiv resolved the conflict by combining both versions into an agreed title:
+   ```html
+   <h1>Student Management System – MCA</h1>
+   ```
+4. All conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) were removed.
+5. Parthiv staged the resolved file (`git add index.html`), committed the resolution (`git commit -m "Resolve merge conflict in application title"`), and pushed the changes (`git push origin feature/app-title`).
+6. Anamaya Saraogi reviewed and approved the now-mergeable Pull Request.
 
-The conflict markers used by Git were:
-
-```text
-<<<<<<< HEAD
-Version from the current branch
-=======
-Version from the incoming branch
->>>>>>> feature/contact
-```
-
-After resolving the conflict, these markers were removed and only the final approved content remained in `index.html`. The resolution commit documented that the conflicting changes from the two branches had been reviewed and merged successfully.
+---
 
 ## How to Run the Application
 
-1. Clone the repository.
-2. Open the project folder in Visual Studio Code.
-3. Open `index.html` in a web browser.
-4. Alternatively, use the Live Server extension in Visual Studio Code to run the application.
+1. Clone the repository to your local machine:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Navigate into the project directory:
+   ```bash
+   cd student-info-app
+   ```
+3. Open `index.html` directly in any web browser (Chrome, Firefox, Edge, or Safari).
+4. Click the **Show Details** button to toggle additional student details.
