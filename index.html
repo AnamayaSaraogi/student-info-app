@@ -3,30 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Information System</title>
+    <meta name="description" content="A concise academic roster for the MCA A cohort.">
+    <title>MCA A | Student Register</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <main class="register" aria-labelledby="page-title">
+        <header class="masthead">
+            <div>
+                <p class="kicker">Department register / 2024–25</p>
+                <h1 id="page-title">Student Information System</h1>
+            </div>
+            <p class="edition">MCA A<br><span>03 enrolled</span></p>
+        </header>
 
-    <h1>Student Information System</h1>
+        <section class="intro" aria-labelledby="roster-title">
+            <div>
+                <p class="section-number">01</p>
+                <h2 id="roster-title">Class roster</h2>
+            </div>
+            <p class="intro-copy">A quick reference for the current Master of Computer Applications cohort.</p>
+        </section>
 
-    <h2>Student 1</h2>
-    <p><strong>Name:</strong> Anamaya Saraogi</p>
-    <p><strong>Register Number:</strong> 2547109</p>
-    <p><strong>Programme:</strong> MCA A</p>
+        <section class="roster" aria-label="Students">
+            <article class="student-record">
+                <div class="record-index">01</div>
+                <div class="record-main">
+                    <h2>Anamaya Saraogi</h2>
+                    <dl>
+                        <div><dt>Register number</dt><dd>2547109</dd></div>
+                        <div><dt>Programme</dt><dd>MCA A</dd></div>
+                    </dl>
+                    <div class="details" id="details-1" hidden>
+                        <dl>
+                            <div><dt>Department</dt><dd>Computer Applications</dd></div>
+                            <div><dt>Status</dt><dd>Active student</dd></div>
+                        </dl>
+                    </div>
+                </div>
+            </article>
 
-    <h2>Student 2</h2>
-    <p><strong>Name:</strong> Arnav Narula</p>
-    <p><strong>Register Number:</strong> 2547115</p>
-    <p><strong>Programme:</strong> MCA A</p>
+            <article class="student-record">
+                <div class="record-index">02</div>
+                <div class="record-main">
+                    <h2>Arnav Narula</h2>
+                    <dl>
+                        <div><dt>Register number</dt><dd>2547115</dd></div>
+                        <div><dt>Programme</dt><dd>MCA A</dd></div>
+                    </dl>
+                    <div class="details" id="details-2" hidden>
+                        <dl>
+                            <div><dt>Department</dt><dd>Computer Applications</dd></div>
+                            <div><dt>Status</dt><dd>Active student</dd></div>
+                        </dl>
+                    </div>
+                </div>
+            </article>
 
-    <h2>Student 3</h2>
-    <p><strong>Name:</strong> Parthiv Sushil</p>
-    <p><strong>Register Number:</strong> 2547141</p>
-    <p><strong>Programme:</strong> MCA A</p>
+            <article class="student-record">
+                <div class="record-index">03</div>
+                <div class="record-main">
+                    <h2>Parthiv Sushil</h2>
+                    <dl>
+                        <div><dt>Register number</dt><dd>2547141</dd></div>
+                        <div><dt>Programme</dt><dd>MCA A</dd></div>
+                    </dl>
+                    <div class="details" id="details-3" hidden>
+                        <dl>
+                            <div><dt>Department</dt><dd>Computer Applications</dd></div>
+                            <div><dt>Status</dt><dd>Active student</dd></div>
+                        </dl>
+                    </div>
+                </div>
+            </article>
+        </section>
 
-    <button onclick="showDetails()">Show Details</button>
+        <footer class="register-footer">
+            <button id="details-button" type="button" onclick="showDetails()" aria-expanded="false" aria-controls="details-1 details-2 details-3">Show details</button>
+            <p>Registrar's copy <span aria-hidden="true">/</span> MCA department</p>
+        </footer>
+    </main>
 
     <script src="script.js"></script>
 </body>
